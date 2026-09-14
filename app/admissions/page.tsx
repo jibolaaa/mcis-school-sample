@@ -35,7 +35,7 @@ export default function AdmissionsPage() {
         <div className="shell">
           <div className="section-heading split-heading">
             <div><p className="eyebrow">The journey</p><h2>Five steps.<br />No guesswork.</h2></div>
-            <p className="heading-note">The sample site focuses on making the public admissions journey understandable first. The full digital application workflow can sit behind this experience when the final system is commissioned.</p>
+            <p className="heading-note">Each stage is intentionally straightforward, so families can understand what is expected and move forward with confidence.</p>
           </div>
           <div className="process-grid">
             {steps.map(([number, title, text]) => <article className="process-step" key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}
@@ -58,7 +58,7 @@ export default function AdmissionsPage() {
 
       <section className="section-pad">
         <div className="shell editorial-split">
-          <div className="editorial-sticky"><p className="eyebrow">Before you apply</p><h2>Know what matters to your family.</h2><p>A strong admissions page should help families arrive at the application stage already understanding the school’s academic direction, culture and daily experience.</p></div>
+          <div className="editorial-sticky"><p className="eyebrow">Before you apply</p><h2>Know what matters to your family.</h2><p>A strong admissions journey helps families arrive at the application stage already understanding the school’s academic direction, culture and daily experience.</p></div>
           <div className="editorial-stack">
             <article className="editorial-row"><span>01</span><div><h3>Choose the right stage</h3><p>Identify whether your child is entering Early Years, Primary or Secondary and review the expectations for that stage.</p></div></article>
             <article className="editorial-row"><span>02</span><div><h3>Understand day or boarding life</h3><p>Ask how the daily routine differs for day students and boarders, and what pastoral support looks like in practice.</p></div></article>
