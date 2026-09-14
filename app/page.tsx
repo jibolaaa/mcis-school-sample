@@ -2,11 +2,33 @@ import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import Reveal from '@/components/Reveal';
 import ArrowIcon from '@/components/ArrowIcon';
+import StageCarousel from '@/components/StageCarousel';
 
 const learningStages = [
-  { number: '01', title: 'Early Years', text: 'A warm beginning built around curiosity, language, movement and confident exploration.', meta: 'Crèche · Pre-School', href: '/academics/early-years' },
-  { number: '02', title: 'Primary', text: 'Strong foundations in literacy, numeracy, creativity and character, with room to ask bigger questions.', meta: 'Elementary School', href: '/academics/primary' },
-  { number: '03', title: 'Secondary', text: 'A rigorous Nigerian and international pathway designed for independence, leadership and global progression.', meta: 'Middle · High School', href: '/academics/secondary' },
+  {
+    number: '01',
+    title: 'Early Years',
+    text: 'A warm beginning built around curiosity, language, movement and confident exploration.',
+    meta: 'Crèche · Pre-School',
+    href: '/academics/early-years',
+    image: 'https://static.wixstatic.com/media/08a8c9_6b97ecd625a24f829b83f6963badaf7a~mv2.jpg/v1/fill/w_980%2Ch_728%2Cal_c%2Cq_85%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/08a8c9_6b97ecd625a24f829b83f6963badaf7a~mv2.jpg',
+  },
+  {
+    number: '02',
+    title: 'Primary',
+    text: 'Strong foundations in literacy, numeracy, creativity and character, with room to ask bigger questions.',
+    meta: 'Elementary School',
+    href: '/academics/primary',
+    image: 'https://www.nigeriaprivateschools.com/uploads/images/master_care.jpg',
+  },
+  {
+    number: '03',
+    title: 'Secondary',
+    text: 'A rigorous Nigerian and international pathway designed for independence, leadership and global progression.',
+    meta: 'Middle · High School',
+    href: '/academics/secondary',
+    image: 'https://lh5.googleusercontent.com/p/AF1QipOjs_kqNXM1d97iMBMi72tSiEP9oSWjWS9ZWxE2=w1600-k-no',
+  },
 ];
 
 const credentials = [
@@ -93,18 +115,7 @@ export default function Home() {
             <div><p className="eyebrow">Learning journey</p><h2>Built for every<br />stage of becoming.</h2></div>
             <p className="heading-note">From first discoveries to examination years, each stage is designed to develop knowledge, independence and a genuine appetite for learning.</p>
           </Reveal>
-
-          <div className="stage-grid" aria-label="Academic stages">
-            {learningStages.map((stage) => (
-              <a key={stage.title} href={stage.href} className="stage-card-link">
-                <article className="stage-card">
-                  <div className="stage-top"><span>{stage.number}</span><span className="stage-arrow"><ArrowIcon size={18} /></span></div>
-                  <div className="stage-body"><p>{stage.meta}</p><h3>{stage.title}</h3><p className="stage-description">{stage.text}</p></div>
-                </article>
-              </a>
-            ))}
-          </div>
-          <div className="stage-progress"><span>Swipe to explore</span><i /><i /><i /></div>
+          <StageCarousel stages={learningStages} />
         </div>
       </section>
 
