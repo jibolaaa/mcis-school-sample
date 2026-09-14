@@ -205,3 +205,138 @@ section[id] { scroll-margin-top: 88px; }
   .admission-step p { font-size: 13px; }
   .admission-cta { padding: 30px 22px; }
 }
+
+/* Mobile viewport containment: all horizontal motion stays inside its own scroller. */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+body > *,
+main,
+section,
+header,
+footer {
+  max-width: 100%;
+}
+
+.shell,
+.cambridge-grid > *,
+.split-heading > *,
+.values-grid > * {
+  min-width: 0;
+}
+
+.cambridge,
+.academics,
+.student-life,
+.campus-feature {
+  overflow-x: clip;
+}
+
+/* Use different genuine MCIS imagery for major sections to avoid repetition. */
+.hero-media {
+  background-image: url('https://mcis.sch.ng/home/images/w17.jpg');
+  background-position: center 44%;
+}
+
+.campus-image {
+  background-image: url('https://mcis.sch.ng/home/images/u11.jpg');
+  background-position: center;
+}
+
+@media (max-width: 900px) {
+  .cambridge .shell,
+  .academics .shell,
+  .student-life .shell {
+    width: min(100% - 32px, 1240px);
+    max-width: calc(100vw - 32px);
+  }
+
+  .cambridge-grid,
+  .split-heading,
+  .values-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cambridge h2,
+  .big-copy,
+  .heading-note,
+  .cambridge-title,
+  .cambridge-copy {
+    max-width: 100%;
+  }
+
+  .cambridge h2 {
+    font-size: clamp(44px, 12vw, 62px);
+    line-height: .96;
+    overflow-wrap: anywhere;
+  }
+
+  .big-copy {
+    font-size: clamp(24px, 7.2vw, 31px);
+    line-height: 1.42;
+    overflow-wrap: anywhere;
+  }
+
+  .stage-grid,
+  .credential-strip,
+  .life-showcase {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .credential-strip {
+    gap: 0;
+  }
+
+  .credential-item {
+    flex: 0 0 min(72vw, 240px);
+    min-width: 0;
+  }
+
+  .stage-card-link {
+    flex-basis: min(78vw, 340px);
+  }
+
+  .life-card {
+    flex-basis: min(82vw, 370px);
+  }
+
+  .campus-feature {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .cambridge .shell,
+  .academics .shell,
+  .student-life .shell {
+    width: calc(100vw - 28px);
+    max-width: calc(100vw - 28px);
+  }
+
+  .cambridge h2 {
+    font-size: clamp(42px, 12.5vw, 54px);
+  }
+
+  .big-copy {
+    font-size: clamp(23px, 6.8vw, 28px);
+  }
+
+  .credential-item {
+    flex-basis: min(74vw, 225px);
+  }
+
+  .stage-card-link {
+    flex-basis: min(80vw, 330px);
+  }
+}
