@@ -11,7 +11,7 @@ const learningStages = [
     text: 'A warm beginning built around curiosity, language, movement and confident exploration.',
     meta: 'Crèche · Pre-School',
     href: '/academics/early-years',
-    image: 'https://static.wixstatic.com/media/08a8c9_6b97ecd625a24f829b83f6963badaf7a~mv2.jpg/v1/fill/w_980%2Ch_728%2Cal_c%2Cq_85%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/08a8c9_6b97ecd625a24f829b83f6963badaf7a~mv2.jpg',
+    image: 'https://mcis.sch.ng/home/images/w14.png',
   },
   {
     number: '02',
@@ -27,7 +27,7 @@ const learningStages = [
     text: 'A rigorous Nigerian and international pathway designed for independence, leadership and global progression.',
     meta: 'Middle · High School',
     href: '/academics/secondary',
-    image: 'https://lh5.googleusercontent.com/p/AF1QipOjs_kqNXM1d97iMBMi72tSiEP9oSWjWS9ZWxE2=w1600-k-no',
+    image: 'https://mcis.sch.ng/home/images/w12.jpg',
   },
 ];
 
@@ -44,7 +44,7 @@ const lifeCards = [
     title: 'Boarding & Community',
     kicker: 'Belonging beyond the classroom',
     text: 'A structured residential experience shaped around care, routine, friendship and independence.',
-    image: 'https://lh5.googleusercontent.com/p/AF1QipOjs_kqNXM1d97iMBMi72tSiEP9oSWjWS9ZWxE2=w1600-k-no',
+    image: 'https://mcis.sch.ng/home/images/u33.jpg',
     href: '/student-life',
     tags: ['Boarding', 'Mentorship'],
   },
@@ -52,7 +52,7 @@ const lifeCards = [
     title: 'Sport & Activities',
     kicker: 'Energy, teamwork, confidence',
     text: 'From organised sport to clubs and outdoor learning, students are encouraged to participate, compete and grow.',
-    image: 'https://www.nigeriaprivateschools.com/uploads/images/master_care.jpg',
+    image: 'https://lh5.googleusercontent.com/p/AF1QipOjs_kqNXM1d97iMBMi72tSiEP9oSWjWS9ZWxE2=w1600-k-no',
     href: '/student-life',
     tags: ['Sport', 'Clubs'],
   },
