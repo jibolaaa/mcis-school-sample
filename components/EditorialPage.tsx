@@ -26,30 +26,49 @@ export default function EditorialPage({
   ctaHref?: string;
 }) {
   return (
-    <main id="top" className="inner-page">
+    <main className="section-page academic-detail-page">
       <SiteHeader overlay={false} />
-      <section className="inner-hero shell">
-        <div className="inner-hero-copy">
-          <p className="eyebrow">{eyebrow}</p>
-          <h1>{title}</h1>
-          <p>{intro}</p>
-          <a className="inline-cta" href={ctaHref}>{ctaLabel}<ArrowIcon size={18} /></a>
+
+      <section className="page-hero-v2">
+        <div className="shell page-hero-grid">
+          <div className="page-hero-copy">
+            <p className="eyebrow">{eyebrow}</p>
+            <h1>{title}</h1>
+            <p>{intro}</p>
+            <div className="page-hero-actions"><a className="pill-button" href={ctaHref}>{ctaLabel}</a><a className="inline-cta" href="/academics">All academics <ArrowIcon size={18} /></a></div>
+          </div>
+          <div className="page-hero-media">
+            <img src={image} alt="" />
+            <div className="page-hero-caption"><span>MasterCare International School</span><span>{eyebrow}</span></div>
+          </div>
         </div>
-        <div className="inner-hero-image" style={{ backgroundImage: `linear-gradient(rgba(5,37,29,.08),rgba(5,37,29,.32)), url(${image})` }} />
       </section>
 
-      <section className="inner-content shell">
-        {sections.map((section, index) => (
-          <article className="inner-section" key={section.heading}>
-            <span>0{index + 1}</span>
-            <div>
-              <h2>{section.heading}</h2>
-              <p>{section.body}</p>
-              {section.bullets && <div className="inner-bullets">{section.bullets.map((item) => <span key={item}>{item}</span>)}</div>}
-            </div>
-          </article>
-        ))}
+      <section className="section-pad">
+        <div className="shell editorial-split">
+          <div className="editorial-sticky"><p className="eyebrow">Inside {eyebrow}</p><h2>What this stage is designed to build.</h2><p>Each stage has its own pace and expectations, but the same focus on knowledge, confidence, character and readiness for what comes next.</p></div>
+          <div className="editorial-stack">
+            {sections.map((section, index) => (
+              <article className="editorial-row" key={section.heading}>
+                <span>0{index + 1}</span>
+                <div>
+                  <h3>{section.heading}</h3>
+                  <p>{section.body}</p>
+                  {section.bullets && <div className="inner-bullets">{section.bullets.map((item) => <span key={item}>{item}</span>)}</div>}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
+
+      <section className="page-final-cta">
+        <div className="shell">
+          <div><p className="eyebrow light">Next step</p><h2>See how this stage fits into the wider MCIS journey.</h2></div>
+          <div className="page-final-actions"><a className="pill-button light" href={ctaHref}>{ctaLabel}</a><a className="text-link light-link" href="/contact">Plan a visit <ArrowIcon size={17} /></a></div>
+        </div>
+      </section>
+
       <SiteFooter />
     </main>
   );
