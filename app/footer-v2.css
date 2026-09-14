@@ -1,0 +1,30 @@
+.site-footer-v2 { padding: 72px 0 26px; background: #041c16; }
+.site-footer-v2 > .shell { display: grid; }
+.footer-grid-v2 { grid-template-columns: 1.15fr 1fr .7fr; gap: 70px; align-items: start; }
+.footer-brand-v2 { display: grid; grid-template-columns: 52px 1fr; column-gap: 14px; align-items: center; }
+.footer-brand-v2 img { width: 52px; height: 52px; object-fit: contain; background: white; border-radius: 50%; padding: 3px; }
+.footer-brand-v2 > div { display: grid; gap: 4px; }
+.footer-brand-v2 strong { font-size: 18px; }
+.footer-brand-v2 > div span { font-size: 9px; text-transform: uppercase; letter-spacing: .16em; color: rgba(255,255,255,.56); }
+.footer-brand-v2 p { grid-column: 1 / -1; max-width: 410px; margin: 30px 0 0; color: rgba(255,255,255,.52); line-height: 1.65; font-size: 13px; }
+.footer-nav-v2 { display: grid; grid-template-columns: 1fr 1fr; gap: 42px; }
+.footer-nav-v2 > div, .footer-contact-v2 { display: grid; gap: 12px; align-content: start; }
+.footer-nav-v2 span, .footer-contact-v2 > span { margin-bottom: 8px; color: var(--mcis-blue-soft); font-size: 9px; text-transform: uppercase; letter-spacing: .15em; }
+.footer-nav-v2 a, .footer-contact-v2 a { width: max-content; color: rgba(255,255,255,.82); font-size: 13px; }
+.footer-nav-v2 a:hover, .footer-contact-v2 a:hover { color: white; }
+.footer-contact-v2 p { margin: 0; color: rgba(255,255,255,.55); line-height: 1.65; font-size: 12px; }
+.footer-bottom-v2 { margin-top: 60px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.12); display: flex !important; justify-content: space-between; align-items: center; gap: 20px; color: rgba(255,255,255,.4); font-size: 10px; }
+.footer-bottom-v2 a { color: rgba(255,255,255,.68); }
+
+@media (max-width: 900px) {
+  .footer-grid-v2 { grid-template-columns: 1fr 1fr; gap: 50px; }
+  .footer-brand-v2 { grid-column: 1 / -1; }
+}
+
+@media (max-width: 560px) {
+  .site-footer-v2 { padding-top: 54px; }
+  .footer-grid-v2 { grid-template-columns: 1fr; gap: 42px; }
+  .footer-brand-v2 { grid-column: auto; }
+  .footer-nav-v2 { gap: 28px; }
+  .footer-bottom-v2 { margin-top: 42px; align-items: flex-start; }
+}
