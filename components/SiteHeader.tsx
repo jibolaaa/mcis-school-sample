@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import ArrowIcon from './ArrowIcon';
 
 const navItems = [
@@ -16,6 +17,7 @@ export default function SiteHeader({ overlay = true }: { overlay?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const lastScroll = useRef(0);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => {
@@ -42,6 +44,7 @@ export default function SiteHeader({ overlay = true }: { overlay?: boolean }) {
   }, [open]);
 
   const solid = scrolled || !overlay || open;
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <>
@@ -52,7 +55,7 @@ export default function SiteHeader({ overlay = true }: { overlay?: boolean }) {
         </a>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
-          {navItems.map(([label, href]) => <a key={label} href={href}>{label}</a>)}
+          {navItems.map(([label, href]) => <a className={isActive(href) ? 'is-active' : ''} aria-current={isActive(href) ? 'page' : undefined} key={label} href={href}>{label}</a>)}
         </nav>
 
         <div className="header-actions">
@@ -69,7 +72,7 @@ export default function SiteHeader({ overlay = true }: { overlay?: boolean }) {
           <p className="eyebrow light">Explore MCIS</p>
           <nav>
             {navItems.map(([label, href], index) => (
-              <a key={label} href={href} onClick={() => setOpen(false)}>
+              <a className={isActive(href) ? 'is-active' : ''} aria-current={isActive(href) ? 'page' : undefined} key={label} href={href} onClick={() => setOpen(false)}>
                 <span>0{index + 1}</span><b>{label}</b><ArrowIcon size={20} />
               </a>
             ))}
