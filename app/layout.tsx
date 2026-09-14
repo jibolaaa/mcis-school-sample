@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import './refinements.css';
+import './page-v2.css';
 
 export const metadata: Metadata = {
   title: 'MasterCare International School | Raising Global Heroes',
