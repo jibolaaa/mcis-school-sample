@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ArrowIcon from './ArrowIcon';
 
 const navItems = [
@@ -14,16 +14,30 @@ const navItems = [
 export default function SiteHeader({ overlay = true }: { overlay?: boolean }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScroll = useRef(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 26);
+    const onScroll = () => {
+      const current = window.scrollY;
+      setScrolled(current > 26);
+
+      if (!open && current > 140 && current > lastScroll.current + 5) {
+        setHidden(true);
+      } else if (current < lastScroll.current - 5 || current < 100) {
+        setHidden(false);
+      }
+      lastScroll.current = current;
+    };
+
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [open]);
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
+    if (open) setHidden(false);
     return () => { document.body.style.overflow = ''; };
   }, [open]);
 
@@ -31,7 +45,7 @@ export default function SiteHeader({ overlay = true }: { overlay?: boolean }) {
 
   return (
     <>
-      <header className={`site-header ${solid ? 'is-scrolled' : ''}`}>
+      <header className={`site-header ${solid ? 'is-scrolled' : ''} ${hidden ? 'is-hidden' : ''}`}>
         <a className="brand" href="/" aria-label="MasterCare International School home">
           <img src="https://edusko-dev-bucket.s3.eu-north-1.amazonaws.com/16375729583010KhsqsXmqEs7MGLQHaGfh804IMpfTuT1.png" alt="MasterCare International School logo" />
           <span><strong>MasterCare</strong><small>International School</small></span>
