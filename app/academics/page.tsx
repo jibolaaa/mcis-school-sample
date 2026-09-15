@@ -1,11 +1,13 @@
-import SiteHeader from '@/components/SiteHeader';
-import SiteFooter from '@/components/SiteFooter';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import Image from 'next/image';
+import StageCarousel from '@/components/StageCarousel';
 import ArrowIcon from '@/components/ArrowIcon';
 
 const stages = [
-  { title: 'Early Years', meta: 'Crèche · Pre-School', text: 'Curiosity, communication, movement and confident exploration form the first layer of learning.', href: '/academics/early-years', image: 'https://mcis.sch.ng/home/images/w14.png' },
-  { title: 'Primary', meta: 'Elementary School', text: 'Strong foundations in literacy, numeracy, creativity and character create room for bigger questions.', href: '/academics/primary', image: 'https://www.nigeriaprivateschools.com/uploads/images/master_care.jpg' },
-  { title: 'Secondary', meta: 'Middle · High School', text: 'A more rigorous local and international pathway builds independence, leadership and examination readiness.', href: '/academics/secondary', image: 'https://mcis.sch.ng/home/images/w12.jpg' },
+  { title: 'Early Years', meta: 'Crèche · Pre-School', text: 'Curiosity, communication, movement and confident exploration form the first layer of learning.', href: '/academics/early-years', image: '/images/leadership.jpg' },
+  { title: 'Primary', meta: 'Elementary School', text: 'Strong foundations in literacy, numeracy, creativity and character create room for bigger questions.', href: '/academics/primary', image: '/images/campus.jpg' },
+  { title: 'Secondary', meta: 'Middle · High School', text: 'A more rigorous local and international pathway builds independence, leadership and examination readiness.', href: '/academics/secondary', image: '/images/leadership.jpg' },
 ];
 
 const pathways = [
@@ -16,10 +18,11 @@ const pathways = [
   ['05', 'UTME', 'University progression'],
 ];
 
+export const metadata: Metadata = { title: 'Academics', description: 'Explore Early Years, Primary and Secondary education at MasterCare International School, including Nigerian and Cambridge pathways.' };
+
 export default function AcademicsPage() {
   return (
-    <main className="section-page academics-page">
-      <SiteHeader overlay={false} />
+    <div className="section-page academics-page">
 
       <section className="page-hero-v2">
         <div className="shell page-hero-grid">
@@ -27,10 +30,10 @@ export default function AcademicsPage() {
             <p className="eyebrow light">Academics</p>
             <h1>Strong foundations. <em>Wider possibilities.</em></h1>
             <p>MCIS blends Nigerian and international learning pathways so students build depth, confidence and the qualifications needed for the next stage of their education.</p>
-            <div className="page-hero-actions"><a className="pill-button light" href="#stages">Explore learning stages</a><a className="text-link light-link" href="/admissions">Admissions <ArrowIcon size={17} /></a></div>
+            <div className="page-hero-actions"><Link className="pill-button light" href="#stages">Explore learning stages</Link><Link className="text-link light-link" href="/admissions">Admissions <ArrowIcon size={17} /></Link></div>
           </div>
           <div className="page-hero-media">
-            <img src="https://mcis.sch.ng/home/images/w12.jpg" alt="Students learning at MasterCare International School" />
+            <Image src="/images/leadership.jpg" alt="A family at MasterCare International School" fill priority sizes="(max-width: 900px) 100vw, 50vw" />
             <span className="page-hero-index">02</span>
             <div className="page-hero-caption"><span>Learning at MCIS</span><span>Local depth · Global route</span></div>
           </div>
@@ -43,25 +46,18 @@ export default function AcademicsPage() {
             <div><p className="eyebrow">Learning stages</p><h2>One journey.<br />Three distinct stages.</h2></div>
             <p className="heading-note">Expectations, independence and academic challenge increase as students move through the school, while the core focus on curiosity and character remains consistent.</p>
           </div>
-          <div className="academic-stage-list">
-            {stages.map((stage, index) => (
-              <a className="academic-stage-panel" href={stage.href} key={stage.title}>
-                <img src={stage.image} alt="" />
-                <div className="academic-stage-copy"><span>0{index + 1} · {stage.meta}</span><h3>{stage.title}</h3><p>{stage.text}</p><span className="text-link light-link">Explore stage <ArrowIcon size={16} /></span></div>
-              </a>
-            ))}
-          </div>
+          <StageCarousel stages={stages.map((stage, index) => ({ ...stage, number: String(index + 1).padStart(2, '0') }))} />
         </div>
       </section>
 
-      <section className="pathway-band section-pad">
+      <section id="pathways" className="pathway-band section-pad">
         <div className="shell">
           <div className="pathway-head">
             <div><p className="eyebrow light">Qualification pathways</p><h2>Prepared for Nigeria. Ready for the world.</h2></div>
             <p>Senior students can progress through Cambridge and Nigerian examination routes, giving families flexibility without asking students to choose between local relevance and international opportunity.</p>
           </div>
           <div className="pathway-grid">
-            {pathways.map(([number, title, caption]) => <a className="pathway-card" href="/academics/secondary" key={title}><span>{number}</span><strong>{title}</strong><small>{caption}</small></a>)}
+            {pathways.map(([number, title, caption]) => <Link className="pathway-card" href="/academics/secondary" key={title}><span>{number}</span><strong>{title}</strong><small>{caption}</small></Link>)}
           </div>
         </div>
       </section>
@@ -84,11 +80,10 @@ export default function AcademicsPage() {
       <section className="page-final-cta">
         <div className="shell">
           <div><p className="eyebrow light">Find the right stage</p><h2>Explore where your child fits into the MCIS learning journey.</h2></div>
-          <div className="page-final-actions"><a className="pill-button light" href="/admissions">Explore admissions</a><a className="text-link light-link" href="/contact">Plan a visit <ArrowIcon size={17} /></a></div>
+          <div className="page-final-actions"><Link className="pill-button light" href="/admissions">Explore admissions</Link><Link className="text-link light-link" href="/contact">Plan a visit <ArrowIcon size={17} /></Link></div>
         </div>
       </section>
 
-      <SiteFooter />
-    </main>
+    </div>
   );
 }

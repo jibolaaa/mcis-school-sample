@@ -1,5 +1,6 @@
-import SiteHeader from '@/components/SiteHeader';
-import SiteFooter from '@/components/SiteFooter';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import Image from 'next/image';
 import ArrowIcon from '@/components/ArrowIcon';
 
 const values = [
@@ -11,10 +12,11 @@ const values = [
   ['S', 'Solutions'],
 ];
 
+export const metadata: Metadata = { title: 'Discover MCIS', description: 'Meet MasterCare International School in Asaba: its approach to learning, Christian values and school community.' };
+
 export default function DiscoverPage() {
   return (
-    <main className="section-page discover-page">
-      <SiteHeader overlay={false} />
+    <div className="section-page discover-page">
 
       <section className="page-hero-v2">
         <div className="shell page-hero-grid">
@@ -23,12 +25,12 @@ export default function DiscoverPage() {
             <h1>A school built around <em>purpose.</em></h1>
             <p>MasterCare International School brings academic ambition, character formation and a Christ-centred culture together in one forward-looking school community in Asaba.</p>
             <div className="page-hero-actions">
-              <a className="pill-button" href="/contact">Plan a visit</a>
-              <a className="inline-cta" href="/academics">Explore academics <ArrowIcon size={18} /></a>
+              <Link className="pill-button" href="/contact">Plan a visit</Link>
+              <Link className="inline-cta" href="/academics">Explore academics <ArrowIcon size={18} /></Link>
             </div>
           </div>
           <div className="page-hero-media">
-            <img src="https://mcis.sch.ng/home/images/w17.jpg" alt="MasterCare International School campus" />
+            <Image src="/images/campus.jpg" alt="MasterCare International School campus" fill priority sizes="(max-width: 900px) 100vw, 50vw" />
             <span className="page-hero-index">01</span>
             <div className="page-hero-caption"><span>MasterCare International School</span><span>Asaba · Delta State</span></div>
           </div>
@@ -75,9 +77,9 @@ export default function DiscoverPage() {
 
       <section className="photo-story section-pad">
         <div className="shell photo-story-grid">
-          <div className="photo-story-main"><img src="https://mcis.sch.ng/home/images/u11.jpg" alt="Life at MasterCare International School" /></div>
+          <div className="photo-story-main"><Image src="/images/campus.jpg" alt="Life at MasterCare International School" fill sizes="(max-width: 900px) 100vw, 50vw" /></div>
           <div className="photo-story-side">
-            <img src="https://mcis.sch.ng/home/images/u33.jpg" alt="MasterCare International School community" />
+            <div className="story-photo"><Image src="/images/leadership.jpg" alt="A family at MasterCare International School" fill sizes="(max-width: 900px) 100vw, 50vw" /></div>
             <div className="photo-story-copy">
               <p className="eyebrow light">One community</p>
               <h3>School life should feel connected.</h3>
@@ -90,11 +92,10 @@ export default function DiscoverPage() {
       <section className="page-final-cta">
         <div className="shell">
           <div><p className="eyebrow light">See it for yourself</p><h2>The best way to understand MCIS is to experience the campus.</h2></div>
-          <div className="page-final-actions"><a className="pill-button light" href="/contact">Plan a visit</a><a className="text-link light-link" href="/admissions">Admissions <ArrowIcon size={17} /></a></div>
+          <div className="page-final-actions"><Link className="pill-button light" href="/contact">Plan a visit</Link><Link className="text-link light-link" href="/admissions">Admissions <ArrowIcon size={17} /></Link></div>
         </div>
       </section>
 
-      <SiteFooter />
-    </main>
+    </div>
   );
 }

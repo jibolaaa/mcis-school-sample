@@ -1,5 +1,6 @@
-import SiteHeader from './SiteHeader';
-import SiteFooter from './SiteFooter';
+import Link from 'next/link';
+import Image from 'next/image';
+import StageNavigation from './StageNavigation';
 import ArrowIcon from './ArrowIcon';
 
 export type EditorialSection = {
@@ -26,8 +27,7 @@ export default function EditorialPage({
   ctaHref?: string;
 }) {
   return (
-    <main className="section-page academic-detail-page">
-      <SiteHeader overlay={false} />
+    <div className="section-page academic-detail-page">
 
       <section className="page-hero-v2">
         <div className="shell page-hero-grid">
@@ -35,14 +35,16 @@ export default function EditorialPage({
             <p className="eyebrow">{eyebrow}</p>
             <h1>{title}</h1>
             <p>{intro}</p>
-            <div className="page-hero-actions"><a className="pill-button" href={ctaHref}>{ctaLabel}</a><a className="inline-cta" href="/academics">All academics <ArrowIcon size={18} /></a></div>
+            <div className="page-hero-actions"><Link className="pill-button" href={ctaHref}>{ctaLabel}</Link><Link className="inline-cta" href="/academics">All academics <ArrowIcon size={18} /></Link></div>
           </div>
           <div className="page-hero-media">
-            <img src={image} alt="" />
+            <Image src={image} alt="" fill priority sizes="(max-width: 900px) 100vw, 50vw" />
             <div className="page-hero-caption"><span>MasterCare International School</span><span>{eyebrow}</span></div>
           </div>
         </div>
       </section>
+
+      <StageNavigation current={eyebrow} />
 
       <section className="section-pad">
         <div className="shell editorial-split">
@@ -54,7 +56,7 @@ export default function EditorialPage({
                 <div>
                   <h3>{section.heading}</h3>
                   <p>{section.body}</p>
-                  {section.bullets && <div className="inner-bullets">{section.bullets.map((item) => <span key={item}>{item}</span>)}</div>}
+                  {section.bullets && <ul className="inner-bullets">{section.bullets.map((item) => <li key={item}>{item}</li>)}</ul>}
                 </div>
               </article>
             ))}
@@ -65,11 +67,10 @@ export default function EditorialPage({
       <section className="page-final-cta">
         <div className="shell">
           <div><p className="eyebrow light">Next step</p><h2>See how this stage fits into the wider MCIS journey.</h2></div>
-          <div className="page-final-actions"><a className="pill-button light" href={ctaHref}>{ctaLabel}</a><a className="text-link light-link" href="/contact">Plan a visit <ArrowIcon size={17} /></a></div>
+          <div className="page-final-actions"><Link className="pill-button light" href={ctaHref}>{ctaLabel}</Link><Link className="text-link light-link" href="/contact">Plan a visit <ArrowIcon size={17} /></Link></div>
         </div>
       </section>
 
-      <SiteFooter />
-    </main>
+    </div>
   );
 }

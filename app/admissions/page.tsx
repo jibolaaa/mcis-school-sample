@@ -1,30 +1,32 @@
-import SiteHeader from '@/components/SiteHeader';
-import SiteFooter from '@/components/SiteFooter';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import Image from 'next/image';
 import ArrowIcon from '@/components/ArrowIcon';
 
 const steps = [
   ['01', 'Discover', 'Explore the school, learning stages and student experience before deciding whether MCIS feels right for your family.'],
   ['02', 'Visit', 'See the campus, ask questions and understand the environment your child would be joining.'],
-  ['03', 'Apply', 'Share the appropriate information for your child’s intended entry level and academic stage.'],
+  ['03', 'Apply', 'Ask admissions for the current application form and confirm the documents required for your child’s stage.'],
   ['04', 'Assessment', 'Complete the relevant assessment and conversation with the admissions team.'],
   ['05', 'Enrol', 'Receive next-step guidance and prepare for entry into the MCIS community.'],
 ];
 
+export const metadata: Metadata = { title: 'Admissions', description: 'Understand the MCIS admissions journey, choose a learning stage, arrange a campus visit and get guidance on applying.' };
+
 export default function AdmissionsPage() {
   return (
-    <main className="section-page admissions-page">
-      <SiteHeader overlay={false} />
+    <div className="section-page admissions-page">
 
       <section className="page-hero-v2">
         <div className="shell page-hero-grid">
           <div className="page-hero-copy">
             <p className="eyebrow">Admissions</p>
             <h1>A clear path into <em>MCIS.</em></h1>
-            <p>Choosing a school is a major family decision. The admissions journey should make it easier to understand the school, experience the campus and know exactly what comes next.</p>
-            <div className="page-hero-actions"><a className="pill-button" href="/contact">Plan a school visit</a><a className="inline-cta" href="#process">See the process <ArrowIcon size={18} /></a></div>
+            <p>Explore the right learning stage, visit the campus and speak with the admissions team about your child’s next step.</p>
+            <div className="page-hero-actions"><Link className="pill-button" href="/contact#enquire">Enquire about admission <ArrowIcon size={17} /></Link><Link className="inline-cta" href="#process">See the process <ArrowIcon size={18} /></Link></div>
           </div>
           <div className="page-hero-media">
-            <img src="https://mcis.sch.ng/home/images/w14.png" alt="MasterCare International School students" />
+            <Image src="/images/leadership.jpg" alt="A family at MasterCare International School" fill priority sizes="(max-width: 900px) 100vw, 50vw" />
             <span className="page-hero-index">04</span>
             <div className="page-hero-caption"><span>Admissions at MCIS</span><span>Discover · Visit · Apply</span></div>
           </div>
@@ -34,8 +36,8 @@ export default function AdmissionsPage() {
       <section id="process" className="admissions-process section-pad">
         <div className="shell">
           <div className="section-heading split-heading">
-            <div><p className="eyebrow">The journey</p><h2>Five steps.<br />No guesswork.</h2></div>
-            <p className="heading-note">Each stage is intentionally straightforward, so families can understand what is expected and move forward with confidence.</p>
+            <div><p className="eyebrow">The journey</p><h2>Your admissions<br />journey.</h2></div>
+            <p className="heading-note">The school will confirm entry requirements, assessment arrangements, fees and available places for your child’s stage.</p>
           </div>
           <div className="process-grid">
             {steps.map(([number, title, text]) => <article className="process-step" key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}
@@ -47,11 +49,11 @@ export default function AdmissionsPage() {
         <div className="shell admission-help">
           <article>
             <div><p className="eyebrow light">Not sure where to start?</p><h3>Visit before you decide.</h3><p>Meet the school team, explore the campus and discuss the appropriate entry point for your child.</p></div>
-            <a className="text-link light-link" href="/contact">Plan your visit <ArrowIcon size={17} /></a>
+            <Link className="text-link light-link" href="/contact">Plan your visit <ArrowIcon size={17} /></Link>
           </article>
           <article>
             <div><p className="eyebrow light">Already exploring MCIS?</p><h3>Understand the learning route.</h3><p>Compare Early Years, Primary and Secondary, then review the Cambridge and Nigerian qualification pathways.</p></div>
-            <a className="text-link light-link" href="/academics">Explore academics <ArrowIcon size={17} /></a>
+            <Link className="text-link light-link" href="/academics">Explore academics <ArrowIcon size={17} /></Link>
           </article>
         </div>
       </section>
@@ -67,14 +69,24 @@ export default function AdmissionsPage() {
         </div>
       </section>
 
+      <section className="section-pad">
+        <div className="shell"><div className="admission-faq">
+          <p className="eyebrow">Questions families ask</p><h2>Before your next step.</h2>
+          <details><summary>How do I start an application?</summary><p><Link href="/contact#enquire">Contact the admissions team</Link> for the current application form and help choosing an entry stage. The school will guide you through its requirements.</p></details>
+          <details><summary>Can we visit before applying?</summary><p>Contact the school to arrange a suitable time. Share the learning stage you are considering and any questions about learning, boarding or student life. <Link href="/contact#enquire">Prepare a visit enquiry.</Link></p></details>
+          <details><summary>Where can I find current fees and available places?</summary><p>Ask the admissions team for the current fees, what they include and availability for your child’s stage. Confirm these details with the school before making plans or payments.</p></details>
+          <details><summary>Which documents will we need?</summary><p>The admissions team can confirm the documents and assessments required for your child’s intended entry point. Have their current school stage and the stage you wish to enter ready for the conversation.</p></details>
+          <details><summary>Who can help with day and boarding options?</summary><p>The school team can explain which options are available for your child’s stage, including routines, supervision, pastoral care and family communication. <Link href="/student-life#boarding">Explore student life.</Link></p></details>
+        </div></div>
+      </section>
+
       <section className="page-final-cta">
         <div className="shell">
           <div><p className="eyebrow light">Your next step</p><h2>Start with a conversation and a campus visit.</h2></div>
-          <div className="page-final-actions"><a className="pill-button light" href="/contact">Contact MCIS</a><a className="text-link light-link" href="/discover">Discover the school <ArrowIcon size={17} /></a></div>
+          <div className="page-final-actions"><Link className="pill-button light" href="/contact">Contact MCIS</Link><Link className="text-link light-link" href="/discover">Discover the school <ArrowIcon size={17} /></Link></div>
         </div>
       </section>
 
-      <SiteFooter />
-    </main>
+    </div>
   );
 }

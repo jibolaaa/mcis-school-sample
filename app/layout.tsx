@@ -1,19 +1,27 @@
 import type { Metadata } from 'next';
-import './globals.css';
-import './refinements.css';
-import './page-v2.css';
-import './footer-v2.css';
+import SiteHeader from '@/components/SiteHeader';
+import SiteFooter from '@/components/SiteFooter';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import './fonts.css';
+import './site.css';
 
 export const metadata: Metadata = {
-  title: 'MasterCare International School | Raising Global Heroes',
+  title: { default: 'MasterCare International School | Raising Global Heroes', template: '%s | MasterCare International School' },
   description:
-    'MasterCare International School, Asaba — a Christ-centred international learning community preparing students for excellence, leadership and a changing world.',
+    'Explore MasterCare International School in Asaba. Discover Early Years, Primary and Secondary learning, day and boarding life, and admissions.',
+  icons: { icon: '/images/logo.png', apple: '/images/logo.png' },
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body id="top">
+        <a className="skip-link" href="#main-content">Skip to main content</a>
+        <SiteHeader />
+        <main id="main-content" tabIndex={-1}><Breadcrumbs />{children}</main>
+        <SiteFooter />
+      </body>
     </html>
   );
 }

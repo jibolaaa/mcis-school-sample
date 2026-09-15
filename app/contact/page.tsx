@@ -1,69 +1,48 @@
-import SiteHeader from '@/components/SiteHeader';
-import SiteFooter from '@/components/SiteFooter';
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 import ArrowIcon from '@/components/ArrowIcon';
+import EnquiryForm from '@/components/EnquiryForm';
+import { school } from '@/lib/school';
+
+export const metadata: Metadata = { title: 'Visit & Contact', description: 'Plan your visit to MasterCare International School in Asaba. Find directions, contact the school and prepare an admissions enquiry.' };
 
 export default function ContactPage() {
-  return (
-    <main className="section-page contact-page">
-      <SiteHeader overlay={false} />
-
-      <section className="page-hero-v2">
-        <div className="shell page-hero-grid">
-          <div className="contact-hero-panel">
-            <div>
-              <p className="eyebrow light">Visit MCIS</p>
-              <h1>Experience the school <em>in person.</em></h1>
-              <p>A campus visit gives families the clearest sense of the learning environment, school culture and the daily experience their child would be joining.</p>
-            </div>
-            <div className="contact-details">
-              <div className="contact-detail"><span>Address</span><strong>1 Dan Okenyi Street, Off Okpanam Road, Asaba, Delta State</strong></div>
-              <div className="contact-detail"><span>Location</span><strong>Asaba · Delta State · Nigeria</strong></div>
-              <div className="contact-detail"><span>Email</span><a href="mailto:info@mcis.sch.ng">info@mcis.sch.ng</a></div>
-            </div>
-          </div>
-          <div className="page-hero-media">
-            <img src="https://lh5.googleusercontent.com/p/AF1QipOjs_kqNXM1d97iMBMi72tSiEP9oSWjWS9ZWxE2=w1600-k-no" alt="MasterCare International School campus in Asaba" />
-            <span className="page-hero-index">05</span>
-            <div className="page-hero-caption"><span>Visit the MCIS campus</span><span>Asaba · Delta State</span></div>
+  return <div className="section-page contact-page">
+    <section className="page-hero-v2">
+      <div className="shell page-hero-grid">
+        <div className="contact-hero-panel">
+          <p className="eyebrow light">Visit MCIS</p>
+          <h1>Come and see <em>for yourself.</em></h1>
+          <p>Walk the campus, meet the team and ask the questions that matter to your family. Contact the school to arrange a suitable time.</p>
+          <div className="page-hero-actions"><Link className="pill-button light" href="#enquire">Enquire about a visit</Link><a className="text-link light-link" href={school.phoneHref}>Call the school <ArrowIcon size={17} /></a></div>
+          <div className="contact-details">
+            <div className="contact-detail"><span>Find us</span><strong>{school.address}</strong></div>
+            <div className="contact-detail"><span>Get in touch</span><a href={'mailto:' + school.email}>{school.email}</a><br /><a href={school.phoneHref}>{school.phone}</a></div>
           </div>
         </div>
-      </section>
-
-      <section className="section-pad">
-        <div className="shell visit-planner">
-          <div>
-            <p className="eyebrow">Make the visit useful</p>
-            <h2>Come with the questions that matter.</h2>
-            <p>A school visit is more useful when families know what to look for. Use the public site to understand the academic direction and student experience before you arrive.</p>
-            <div className="page-hero-actions"><a className="pill-button" href="mailto:info@mcis.sch.ng">Email the school</a><a className="inline-cta" href="/admissions">Explore admissions <ArrowIcon size={18} /></a></div>
-          </div>
+        <div className="page-hero-media">
+          <Image src="/images/campus.jpg" alt="School buildings and grounds at MasterCare International School, Asaba" fill priority sizes="(max-width: 900px) 100vw, 50vw" />
+          <div className="page-hero-caption"><span>Asaba, Delta State</span><a href={school.directionsUrl} target="_blank" rel="noopener noreferrer">Get directions ↗<span className="sr-only"> (opens Google Maps in a new tab)</span></a></div>
+        </div>
+      </div>
+    </section>
+    <section className="section-pad" id="enquire">
+      <div className="shell visit-planner">
+        <div>
+          <p className="eyebrow">Make your visit count</p>
+          <h2>Your questions.<br />A personal conversation.</h2>
+          <p>Tell the school which stage you are exploring and what you would like to know. The team can help you with the next steps.</p>
+          <a className="text-link" href={school.directionsUrl} target="_blank" rel="noopener noreferrer">Find the campus <ArrowIcon size={17} /><span className="sr-only">(opens Google Maps in a new tab)</span></a>
           <div className="visit-list">
-            <article className="visit-row"><span>01</span><div><h3>Learning spaces</h3><p>See the classrooms and environments students use at the stage relevant to your child.</p></div></article>
-            <article className="visit-row"><span>02</span><div><h3>Academic pathway</h3><p>Ask how Nigerian and Cambridge routes are structured and what progression looks like for older students.</p></div></article>
-            <article className="visit-row"><span>03</span><div><h3>Student life</h3><p>Explore sport, clubs, mentorship, leadership and the spaces students use beyond lessons.</p></div></article>
-            <article className="visit-row"><span>04</span><div><h3>Boarding</h3><p>If boarding is relevant to your family, understand routines, supervision, pastoral care and community life.</p></div></article>
+            <article className="visit-row"><span>01</span><div><h3>Learning & progression</h3><p>Ask about the right entry stage, curriculum, assessments and subject options.</p></div></article>
+            <article className="visit-row"><span>02</span><div><h3>Day or boarding</h3><p>Discuss routines, supervision, pastoral care and how the school keeps families informed.</p></div></article>
+            <article className="visit-row"><span>03</span><div><h3>Practical details</h3><p>Confirm current fees, term dates, availability and the documents needed to apply.</p></div></article>
           </div>
         </div>
-      </section>
-
-      <section className="photo-story section-pad">
-        <div className="shell photo-story-grid">
-          <div className="photo-story-main"><img src="https://mcis.sch.ng/home/images/w17.jpg" alt="MasterCare International School in Asaba" /></div>
-          <div className="photo-story-side">
-            <img src="https://mcis.sch.ng/home/images/u11.jpg" alt="MasterCare International School community" />
-            <div className="photo-story-copy"><p className="eyebrow light">Before you arrive</p><h3>Explore first. Visit second.</h3><p>Use the Academics, Student Life and Admissions pages to prepare the questions you want answered when you come to campus.</p></div>
-          </div>
-        </div>
-      </section>
-
-      <section className="page-final-cta">
-        <div className="shell">
-          <div><p className="eyebrow light">Continue exploring</p><h2>Understand the school before taking the next admissions step.</h2></div>
-          <div className="page-final-actions"><a className="pill-button light" href="/admissions">Admissions</a><a className="text-link light-link" href="/discover">Discover MCIS <ArrowIcon size={17} /></a></div>
-        </div>
-      </section>
-
-      <SiteFooter />
-    </main>
-  );
+        <EnquiryForm />
+      </div>
+    </section>
+    <section className="page-final-cta"><div className="shell"><div><p className="eyebrow light">Ready for the next step?</p><h2>Find your place at MCIS.</h2></div><div className="page-final-actions"><Link className="pill-button light" href="/admissions">Explore admissions</Link><Link className="text-link light-link" href="/academics">Find a learning stage <ArrowIcon size={17} /></Link></div></div></section>
+  </div>;
 }

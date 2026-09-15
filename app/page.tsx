@@ -1,5 +1,5 @@
-import SiteHeader from '@/components/SiteHeader';
-import SiteFooter from '@/components/SiteFooter';
+import Link from 'next/link';
+import Image from 'next/image';
 import Reveal from '@/components/Reveal';
 import ArrowIcon from '@/components/ArrowIcon';
 import StageCarousel from '@/components/StageCarousel';
@@ -11,7 +11,7 @@ const learningStages = [
     text: 'A warm beginning built around curiosity, language, movement and confident exploration.',
     meta: 'Crèche · Pre-School',
     href: '/academics/early-years',
-    image: 'https://mcis.sch.ng/home/images/w14.png',
+    image: '/images/leadership.jpg',
   },
   {
     number: '02',
@@ -19,7 +19,7 @@ const learningStages = [
     text: 'Strong foundations in literacy, numeracy, creativity and character, with room to ask bigger questions.',
     meta: 'Elementary School',
     href: '/academics/primary',
-    image: 'https://www.nigeriaprivateschools.com/uploads/images/master_care.jpg',
+    image: '/images/campus.jpg',
   },
   {
     number: '03',
@@ -27,7 +27,7 @@ const learningStages = [
     text: 'A rigorous Nigerian and international pathway designed for independence, leadership and global progression.',
     meta: 'Middle · High School',
     href: '/academics/secondary',
-    image: 'https://mcis.sch.ng/home/images/w12.jpg',
+    image: '/images/leadership.jpg',
   },
 ];
 
@@ -44,24 +44,24 @@ const lifeCards = [
     title: 'Boarding & Community',
     kicker: 'Belonging beyond the classroom',
     text: 'A structured residential experience shaped around care, routine, friendship and independence.',
-    image: 'https://mcis.sch.ng/home/images/u33.jpg',
-    href: '/student-life',
+    image: '/images/leadership.jpg',
+    href: '/student-life#boarding',
     tags: ['Boarding', 'Mentorship'],
   },
   {
     title: 'Sport & Activities',
     kicker: 'Energy, teamwork, confidence',
     text: 'From organised sport to clubs and outdoor learning, students are encouraged to participate, compete and grow.',
-    image: 'https://lh5.googleusercontent.com/p/AF1QipOjs_kqNXM1d97iMBMi72tSiEP9oSWjWS9ZWxE2=w1600-k-no',
-    href: '/student-life',
+    image: '/images/campus.jpg',
+    href: '/student-life#sport',
     tags: ['Sport', 'Clubs'],
   },
   {
     title: 'Leadership & Enterprise',
     kicker: 'Character put into practice',
     text: 'Leadership, recognition and entrepreneurship give students practical opportunities to take responsibility.',
-    image: 'https://static.wixstatic.com/media/08a8c9_6b97ecd625a24f829b83f6963badaf7a~mv2.jpg/v1/fill/w_980%2Ch_728%2Cal_c%2Cq_85%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/08a8c9_6b97ecd625a24f829b83f6963badaf7a~mv2.jpg',
-    href: '/student-life',
+    image: '/images/leadership.jpg',
+    href: '/student-life#leadership',
     tags: ['Leadership', 'Entrepreneurship'],
   },
 ];
@@ -77,25 +77,23 @@ const admissionSteps = [
 
 export default function Home() {
   return (
-    <main id="top">
-      <SiteHeader />
+    <div className="home-page">
 
       <section className="hero" aria-labelledby="hero-title">
-        <div className="hero-media" aria-hidden="true" />
+        <div className="hero-media"><Image src="/images/campus.jpg" alt="MasterCare International School campus in Asaba" fill priority sizes="100vw" quality={85} /></div>
         <div className="hero-scrim" aria-hidden="true" />
-        <div className="hero-grid" aria-hidden="true" />
         <div className="hero-content shell">
           <p className="hero-kicker">Asaba, Delta State · Nigeria</p>
           <h1 id="hero-title">Raising<br /><span>global heroes.</span></h1>
           <div className="hero-bottom">
-            <p>A forward-looking international education where academic excellence, character and purpose grow together.</p>
+            <p>Early Years, Primary and Secondary education in Asaba, shaped by academic ambition, Christian values and a sense of belonging.</p>
             <div className="hero-actions">
-              <a href="/discover" className="pill-button light">Explore MCIS</a>
-              <a href="/admissions" className="text-link light-link">Admissions <ArrowIcon size={17} /></a>
+              <Link href="/discover" className="pill-button light">Explore MCIS</Link>
+              <Link href="/admissions" className="text-link light-link">Admissions <ArrowIcon size={17} /></Link>
             </div>
           </div>
+          <div className="hero-facts"><span>Early Years to Secondary</span><span>Day & Boarding</span><span>Excellence through Christ</span></div>
         </div>
-        <div className="hero-side-note">Scroll to discover <span>↓</span></div>
       </section>
 
       <section id="discover" className="manifesto section-pad">
@@ -104,7 +102,7 @@ export default function Home() {
           <Reveal className="manifesto-copy">
             <h2>More than a school.<br /><em>A foundation for what comes next.</em></h2>
             <p>MCIS combines Nigerian and international learning pathways with a culture designed to help students think creatively, reason critically, communicate confidently and grow into responsible world citizens.</p>
-            <a className="text-link" href="/discover">Discover our approach <ArrowIcon size={17} /></a>
+            <Link className="text-link" href="/discover">Discover our approach <ArrowIcon size={17} /></Link>
           </Reveal>
         </div>
       </section>
@@ -127,17 +125,17 @@ export default function Home() {
           </div>
           <div className="credential-strip" aria-label="Academic pathways">
             {credentials.map(([number, title, caption]) => (
-              <a href="/academics" className="credential-item" key={title}>
+              <Link href="/academics#pathways" className="credential-item" key={title}>
                 <span>{number}</span><strong>{title}</strong><small>{caption}</small>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
       <section className="campus-feature">
-        <div className="campus-image" role="img" aria-label="MasterCare International School campus in Asaba" />
-        <div className="campus-panel"><Reveal><p className="eyebrow light">The MCIS campus</p><h2>Space to learn.<br />Room to become.</h2><p>A purpose-built school environment in Asaba with learning, recreation and community spaces designed around the rhythm of student life.</p><a className="pill-button light" href="/contact">Plan a visit</a></Reveal></div>
+        <div className="campus-image"><Image src="/images/campus.jpg" alt="School buildings and sports grounds at MasterCare" fill sizes="(max-width: 900px) 100vw, 55vw" /></div>
+        <div className="campus-panel"><Reveal><p className="eyebrow light">The MCIS campus</p><h2>Space to learn.<br />Room to become.</h2><p>A purpose-built school environment in Asaba with learning, recreation and community spaces designed around the rhythm of student life.</p><Link className="pill-button light" href="/contact">Plan a visit</Link></Reveal></div>
       </section>
 
       <section id="student-life" className="student-life section-pad">
@@ -148,12 +146,12 @@ export default function Home() {
           </Reveal>
           <div className="life-showcase">
             {lifeCards.map((card) => (
-              <a className="life-card" href={card.href} key={card.title}>
-                <img src={card.image} alt="" />
+              <Link className="life-card" href={card.href} key={card.title}>
+                <div className="life-photo"><Image src={card.image} alt="" fill sizes="(max-width: 600px) 100vw, 33vw" /></div>
                 <div className="life-card-scrim" />
                 <div className="life-card-top"><span>{card.kicker}</span><ArrowIcon size={19} /></div>
                 <div className="life-card-copy"><div className="life-card-tags">{card.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><h3>{card.title}</h3><p>{card.text}</p></div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -168,13 +166,12 @@ export default function Home() {
 
       <section id="admissions" className="admissions section-pad">
         <div className="shell">
-          <Reveal className="admissions-intro"><p className="eyebrow">Admissions</p><h2>Your child’s next chapter<br /><em>can begin here.</em></h2><p>We make the journey clear before asking families to take the next step.</p></Reveal>
+          <Reveal className="admissions-intro"><p className="eyebrow">Admissions</p><h2>Your child’s next chapter<br /><em>can begin here.</em></h2><p>Explore the school, meet the team and find the right entry stage for your child.</p></Reveal>
           <div className="admission-steps">{admissionSteps.map(([number, title, description]) => <Reveal key={number} className="admission-step"><span className="step-number">{number}</span><h3>{title}</h3><p>{description}</p></Reveal>)}</div>
-          <Reveal className="admission-cta"><div><p className="eyebrow light">Ready when you are</p><h3>Come and experience MCIS.</h3></div><div className="cta-actions"><a className="pill-button light" href="/admissions">Begin the journey</a><a className="text-link light-link" href="/contact">Plan a visit <ArrowIcon size={17} /></a></div></Reveal>
+          <Reveal className="admission-cta"><div><p className="eyebrow light">Ready when you are</p><h3>Come and experience MCIS.</h3></div><div className="cta-actions"><Link className="pill-button light" href="/admissions">Begin the journey</Link><Link className="text-link light-link" href="/contact">Plan a visit <ArrowIcon size={17} /></Link></div></Reveal>
         </div>
       </section>
 
-      <SiteFooter />
-    </main>
+    </div>
   );
 }

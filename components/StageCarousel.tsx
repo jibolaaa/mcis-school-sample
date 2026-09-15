@@ -1,84 +1,54 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useId, useRef, useState } from 'react';
 import ArrowIcon from './ArrowIcon';
 
-type Stage = {
-  number: string;
-  title: string;
-  text: string;
-  meta: string;
-  href: string;
-  image: string;
-};
+type Stage = { number: string; title: string; text: string; meta: string; href: string; image: string };
 
 export default function StageCarousel({ stages }: { stages: Stage[] }) {
-  const railRef = useRef<HTMLDivElement | null>(null);
+  const railRef = useRef<HTMLDivElement>(null);
+  const id = useId();
   const [active, setActive] = useState(0);
-
   useEffect(() => {
     const rail = railRef.current;
     if (!rail) return;
-
-    const updateActive = () => {
-      const cards = Array.from(rail.querySelectorAll<HTMLElement>('.stage-card-link'));
-      if (!cards.length) return;
-      const center = rail.scrollLeft + rail.clientWidth / 2;
-      let closest = 0;
-      let distance = Number.POSITIVE_INFINITY;
-
-      cards.forEach((card, index) => {
-        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-        const nextDistance = Math.abs(cardCenter - center);
-        if (nextDistance < distance) {
-          distance = nextDistance;
-          closest = index;
-        }
-      });
-      setActive(closest);
+    const update = () => {
+      const left = rail.getBoundingClientRect().left;
+      const cards = Array.from(rail.children) as HTMLElement[];
+      if (rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 2 && rail.scrollLeft > 0) { setActive(cards.length - 1); return; }
+      const distances = cards.map(card => Math.abs(card.getBoundingClientRect().left - left));
+      setActive(distances.indexOf(Math.min(...distances)));
     };
-
-    updateActive();
-    rail.addEventListener('scroll', updateActive, { passive: true });
-    window.addEventListener('resize', updateActive);
-    return () => {
-      rail.removeEventListener('scroll', updateActive);
-      window.removeEventListener('resize', updateActive);
-    };
+    rail.addEventListener('scroll', update, { passive: true });
+    const resize = new ResizeObserver(update);
+    resize.observe(rail);
+    update();
+    return () => { rail.removeEventListener('scroll', update); resize.disconnect(); };
   }, []);
 
-  return (
-    <div className="stage-carousel-shell">
-      <div ref={railRef} className="stage-grid" aria-label="Academic stages">
-        {stages.map((stage) => (
-          <a key={stage.title} href={stage.href} className="stage-card-link">
-            <article className="stage-card">
-              <div
-                className="stage-card-bg"
-                aria-hidden="true"
-                style={{ backgroundImage: `linear-gradient(180deg, rgba(5,37,29,.2), rgba(5,37,29,.86)), url(${stage.image})` }}
-              />
-              <div className="stage-top">
-                <span>{stage.number}</span>
-                <span className="stage-arrow"><ArrowIcon size={18} /></span>
-              </div>
-              <div className="stage-body">
-                <p>{stage.meta}</p>
-                <h3>{stage.title}</h3>
-                <p className="stage-description">{stage.text}</p>
-              </div>
-            </article>
-          </a>
-        ))}
-      </div>
+  const goTo = (index: number) => {
+    const rail = railRef.current;
+    const card = rail?.children[index] as HTMLElement | undefined;
+    if (!rail || !card) return;
+    rail.scrollTo({ left: rail.scrollLeft + card.getBoundingClientRect().left - rail.getBoundingClientRect().left, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+  };
 
-      <div className="stage-progress" aria-live="polite">
-        <span className="stage-progress-label">Swipe to explore</span>
-        <strong>{String(active + 1).padStart(2, '0')} / {String(stages.length).padStart(2, '0')}</strong>
-        <div className="stage-progress-bars" aria-hidden="true">
-          {stages.map((stage, index) => <i key={stage.number} className={index === active ? 'is-active' : ''} />)}
-        </div>
-      </div>
+  return <div className="stage-carousel-shell" role="region" aria-label="Academic stages">
+    <div id={id} ref={railRef} className="stage-grid">
+      {stages.map(stage => <Link key={stage.title} href={stage.href} className="stage-card-link" aria-label={'Explore ' + stage.title}>
+        <article className="stage-card">
+          <div className="stage-card-bg"><Image src={stage.image} alt="" fill sizes="(max-width: 900px) 82vw, 33vw" /></div>
+          <div className="stage-top"><span>{stage.number}</span><span className="stage-arrow"><ArrowIcon size={18} /></span></div>
+          <div className="stage-body"><p>{stage.meta}</p><h3>{stage.title}</h3><p className="stage-description">{stage.text}</p><span className="stage-explore">Explore this stage <ArrowIcon size={16} /></span></div>
+        </article>
+      </Link>)}
     </div>
-  );
+    <div className="stage-progress">
+      <div className="stage-pagination" aria-label="Choose a learning stage">{stages.map((stage, index) => <button type="button" key={stage.number} aria-label={'Show ' + stage.title} aria-pressed={active === index} aria-controls={id} onClick={() => goTo(index)}><span /></button>)}</div>
+      <span className="stage-count" aria-live="polite" aria-atomic="true">{active + 1} / {stages.length}</span>
+      <div className="stage-controls"><button type="button" aria-label="Previous learning stage" aria-controls={id} disabled={active === 0} onClick={() => goTo(Math.max(0, active - 1))}>←</button><button type="button" aria-label="Next learning stage" aria-controls={id} disabled={active === stages.length - 1} onClick={() => goTo(Math.min(stages.length - 1, active + 1))}>→</button></div>
+    </div>
+  </div>;
 }

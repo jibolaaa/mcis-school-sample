@@ -1,18 +1,20 @@
-import SiteHeader from '@/components/SiteHeader';
-import SiteFooter from '@/components/SiteFooter';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import Image from 'next/image';
 import ArrowIcon from '@/components/ArrowIcon';
 
 const rhythm = [
-  ['MON–THU', 'Entrepreneurship', 'Ideas into action'],
-  ['WED', 'Mentorship', 'Guidance and reflection'],
-  ['THU', 'Sport', 'Movement and teamwork'],
-  ['FRI', 'Clubs', 'Interests and community'],
+  ['01', 'Entrepreneurship', 'Ideas into action'],
+  ['02', 'Mentorship', 'Guidance and reflection'],
+  ['03', 'Sport', 'Movement and teamwork'],
+  ['04', 'Clubs', 'Interests and community'],
 ];
+
+export const metadata: Metadata = { title: 'Student Life', description: 'Discover boarding, sport, clubs, leadership and mentorship at MasterCare International School in Asaba.' };
 
 export default function StudentLifePage() {
   return (
-    <main className="section-page student-life-page">
-      <SiteHeader overlay={false} />
+    <div className="section-page student-life-page">
 
       <section className="page-hero-v2">
         <div className="shell page-hero-grid">
@@ -20,12 +22,11 @@ export default function StudentLifePage() {
             <p className="eyebrow">Student life</p>
             <h1>Growing through <em>participation.</em></h1>
             <p>Life at MCIS extends beyond lessons. Boarding, sport, clubs, mentoring and enterprise create daily opportunities to build confidence, discipline, friendship and responsibility.</p>
-            <div className="page-hero-actions"><a className="pill-button" href="#rhythm">Explore student life</a><a className="inline-cta" href="/contact">Visit the campus <ArrowIcon size={18} /></a></div>
+            <div className="page-hero-actions"><Link className="pill-button" href="#rhythm">Explore student life</Link><Link className="inline-cta" href="/contact">Visit the campus <ArrowIcon size={18} /></Link></div>
           </div>
-          <div className="student-collage">
-            <figure><img src="https://mcis.sch.ng/home/images/u33.jpg" alt="Student life at MasterCare International School" /></figure>
-            <figure><img src="https://static.wixstatic.com/media/08a8c9_6b97ecd625a24f829b83f6963badaf7a~mv2.jpg/v1/fill/w_980%2Ch_728%2Cal_c%2Cq_85%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/08a8c9_6b97ecd625a24f829b83f6963badaf7a~mv2.jpg" alt="MasterCare International School students" /></figure>
-            <figure><img src="https://mcis.sch.ng/home/images/u11.jpg" alt="MasterCare International School activities" /></figure>
+          <div className="page-hero-media">
+            <Image src="/images/campus.jpg" alt="MasterCare International School campus and sports grounds" fill priority sizes="(max-width: 900px) 100vw, 50vw" />
+            <div className="page-hero-caption"><span>Life beyond the classroom</span><span>Asaba campus</span></div>
           </div>
         </div>
       </section>
@@ -33,9 +34,9 @@ export default function StudentLifePage() {
       <section id="rhythm" className="rhythm-section section-pad">
         <div className="shell rhythm-grid">
           <div>
-            <p className="eyebrow light">A fuller school week</p>
-            <h2>Growth has a rhythm.</h2>
-            <p>MCIS builds structured activities into the school week so development beyond academics is not left to chance.</p>
+            <p className="eyebrow light">Beyond lessons</p>
+            <h2>Room for every interest.</h2>
+            <p>Explore the activities and support that sit alongside classroom learning. Ask the school about the current programme during your visit.</p>
           </div>
           <div className="rhythm-list">
             {rhythm.map(([day, title, note]) => <div className="rhythm-row" key={title}><span>{day}</span><strong>{title}</strong><small>{note}</small></div>)}
@@ -45,13 +46,13 @@ export default function StudentLifePage() {
 
       <section className="section-pad">
         <div className="shell life-feature-grid">
-          <div className="life-feature-main">
-            <img src="https://lh5.googleusercontent.com/p/AF1QipOjs_kqNXM1d97iMBMi72tSiEP9oSWjWS9ZWxE2=w1600-k-no" alt="MasterCare International School campus" />
+          <div id="boarding" className="life-feature-main">
+            <Image src="/images/campus.jpg" alt="MasterCare International School campus" fill sizes="(max-width: 900px) 100vw, 50vw" />
             <div className="life-feature-copy"><p className="eyebrow light">Boarding & community</p><h2>Belonging is part of the education.</h2><p>Residential life is designed around structure, care and growing independence, while keeping students connected to a supervised school community.</p></div>
           </div>
           <div className="life-mini-grid">
-            <article className="life-mini"><span>01 · Sport & clubs</span><div><h3>Confidence through action.</h3><p>Teamwork, competition and shared interests give students more ways to discover strengths and form friendships.</p></div></article>
-            <article className="life-mini"><span>02 · Leadership & enterprise</span><div><h3>Responsibility in practice.</h3><p>Students are given practical opportunities to lead, solve problems, make decisions and turn ideas into useful outcomes.</p></div></article>
+            <article id="sport" className="life-mini"><span>01 · Sport & clubs</span><div><h3>Confidence through action.</h3><p>Teamwork, competition and shared interests give students more ways to discover strengths and form friendships.</p></div></article>
+            <article id="leadership" className="life-mini"><span>02 · Leadership & enterprise</span><div><h3>Responsibility in practice.</h3><p>Students are given practical opportunities to lead, solve problems, make decisions and turn ideas into useful outcomes.</p></div></article>
           </div>
         </div>
       </section>
@@ -71,11 +72,10 @@ export default function StudentLifePage() {
       <section className="page-final-cta">
         <div className="shell">
           <div><p className="eyebrow light">Experience daily life</p><h2>Walk the campus, meet the team and see where students spend their day.</h2></div>
-          <div className="page-final-actions"><a className="pill-button light" href="/contact">Plan a visit</a><a className="text-link light-link" href="/admissions">Admissions <ArrowIcon size={17} /></a></div>
+          <div className="page-final-actions"><Link className="pill-button light" href="/contact">Plan a visit</Link><Link className="text-link light-link" href="/admissions">Admissions <ArrowIcon size={17} /></Link></div>
         </div>
       </section>
 
-      <SiteFooter />
-    </main>
+    </div>
   );
 }
