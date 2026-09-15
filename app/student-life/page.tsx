@@ -1,6 +1,6 @@
-import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from '@/components/SchoolImage';
 import ArrowIcon from '@/components/ArrowIcon';
 
 const rhythm = [
@@ -10,7 +10,7 @@ const rhythm = [
   ['04', 'Clubs', 'Interests and community'],
 ];
 
-export const metadata: Metadata = { title: 'Student Life', description: 'Discover boarding, sport, clubs, leadership and mentorship at MasterCare International School in Asaba.' };
+export const metadata = pageMetadata('student-life');
 
 export default function StudentLifePage() {
   return (
@@ -25,8 +25,8 @@ export default function StudentLifePage() {
             <div className="page-hero-actions"><Link className="pill-button" href="#rhythm">Explore student life</Link><Link className="inline-cta" href="/contact">Visit the campus <ArrowIcon size={18} /></Link></div>
           </div>
           <div className="page-hero-media">
-            <Image src="/images/campus.jpg" alt="MasterCare International School campus and sports grounds" fill priority sizes="(max-width: 900px) 100vw, 50vw" />
-            <div className="page-hero-caption"><span>Life beyond the classroom</span><span>Asaba campus</span></div>
+            <Image src="/images/sport-2017.jpg" alt="MCIS football team celebrating their 2017 Delta State Principals’ Cup victory" fill priority sizes="(max-width: 760px) 100vw, 50vw" />
+            <div className="page-hero-caption"><span>Principals’ Cup champions · 2017 archive</span><a href="https://guardian.ng/sport/delta-to-ban-schools-without-sporting-facilities/">Photo: The Guardian Nigeria ↗</a></div>
           </div>
         </div>
       </section>
@@ -47,11 +47,11 @@ export default function StudentLifePage() {
       <section className="section-pad">
         <div className="shell life-feature-grid">
           <div id="boarding" className="life-feature-main">
-            <Image src="/images/campus.jpg" alt="MasterCare International School campus" fill sizes="(max-width: 900px) 100vw, 50vw" />
+            <span className="boarding-mark" aria-hidden="true">MCIS</span>
             <div className="life-feature-copy"><p className="eyebrow light">Boarding & community</p><h2>Belonging is part of the education.</h2><p>Residential life is designed around structure, care and growing independence, while keeping students connected to a supervised school community.</p></div>
           </div>
           <div className="life-mini-grid">
-            <article id="sport" className="life-mini"><span>01 · Sport & clubs</span><div><h3>Confidence through action.</h3><p>Teamwork, competition and shared interests give students more ways to discover strengths and form friendships.</p></div></article>
+            <article id="sport" className="life-mini"><span>01 · Sport & clubs</span><div><h3>Our 2017 champions.</h3><p>MCIS won the 2017 Delta State Principals’ Cup, defeating Idjerhe Grammar School 2–1. This achievement is part of the school’s sporting history. Ask about current teams and clubs when you visit.</p></div></article>
             <article id="leadership" className="life-mini"><span>02 · Leadership & enterprise</span><div><h3>Responsibility in practice.</h3><p>Students are given practical opportunities to lead, solve problems, make decisions and turn ideas into useful outcomes.</p></div></article>
           </div>
         </div>

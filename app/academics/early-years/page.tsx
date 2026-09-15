@@ -1,14 +1,13 @@
-import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 import EditorialPage from '@/components/EditorialPage';
 
-export const metadata: Metadata = { title: 'Early Years', description: 'Explore early learning, communication, play and growing independence at MasterCare International School.' };
+export const metadata = pageMetadata('early-years');
 
 export default function EarlyYearsPage() {
   return <EditorialPage
     eyebrow="Early Years"
     title="Curiosity starts here."
     intro="The Early Years experience is built around confident exploration, communication, movement, routines and the joy of discovering how the world works."
-    image="/images/leadership.jpg"
     sections={[
       { heading: 'A warm beginning', body: 'Young learners need security, rhythm and room to explore. The environment is designed to help children settle, communicate and take part with growing confidence.' },
       { heading: 'Learning through experience', body: 'Language, early numeracy, movement, creativity and social development are strengthened through age-appropriate activities and guided exploration.' },

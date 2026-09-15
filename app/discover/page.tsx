@@ -1,6 +1,6 @@
-import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from '@/components/SchoolImage';
 import ArrowIcon from '@/components/ArrowIcon';
 
 const values = [
@@ -12,7 +12,7 @@ const values = [
   ['S', 'Solutions'],
 ];
 
-export const metadata: Metadata = { title: 'Discover MCIS', description: 'Meet MasterCare International School in Asaba: its approach to learning, Christian values and school community.' };
+export const metadata = pageMetadata('discover');
 
 export default function DiscoverPage() {
   return (
@@ -23,16 +23,16 @@ export default function DiscoverPage() {
           <div className="page-hero-copy">
             <p className="eyebrow">Discover MCIS</p>
             <h1>A school built around <em>purpose.</em></h1>
-            <p>MasterCare International School brings academic ambition, character formation and a Christ-centred culture together in one forward-looking school community in Asaba.</p>
+            <p>Founded in 2014 by Dcns. Roli Nere Uduagan, MasterCare International School serves pre-school, primary and secondary students in Asaba, with day and boarding options and a Christ-centred ethos.</p>
             <div className="page-hero-actions">
               <Link className="pill-button" href="/contact">Plan a visit</Link>
               <Link className="inline-cta" href="/academics">Explore academics <ArrowIcon size={18} /></Link>
             </div>
           </div>
           <div className="page-hero-media">
-            <Image src="/images/campus.jpg" alt="MasterCare International School campus" fill priority sizes="(max-width: 900px) 100vw, 50vw" />
+            <Image src="/images/archive-3.jpg" alt="The MCIS classroom block pictured at its commissioning" fill priority sizes="(max-width: 760px) 100vw, 50vw" />
             <span className="page-hero-index">01</span>
-            <div className="page-hero-caption"><span>MasterCare International School</span><span>Asaba · Delta State</span></div>
+            <div className="page-hero-caption"><span>Campus development archive</span><span>Classroom block at commissioning</span></div>
           </div>
         </div>
       </section>
@@ -75,19 +75,7 @@ export default function DiscoverPage() {
         </div>
       </section>
 
-      <section className="photo-story section-pad">
-        <div className="shell photo-story-grid">
-          <div className="photo-story-main"><Image src="/images/campus.jpg" alt="Life at MasterCare International School" fill sizes="(max-width: 900px) 100vw, 50vw" /></div>
-          <div className="photo-story-side">
-            <div className="story-photo"><Image src="/images/leadership.jpg" alt="A family at MasterCare International School" fill sizes="(max-width: 900px) 100vw, 50vw" /></div>
-            <div className="photo-story-copy">
-              <p className="eyebrow light">One community</p>
-              <h3>School life should feel connected.</h3>
-              <p>Academics, boarding, mentorship, sport and activities work best when they feel like parts of the same student experience.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <section id="heritage" className="heritage-section section-pad"><div className="shell heritage-grid"><figure><div className="heritage-image"><Image src="/images/archive-2.jpg" alt="Officials unveiling the plaque at the commissioning of the MCIS classroom block" fill sizes="(max-width: 900px) 100vw, 55vw"/></div><figcaption>Classroom-block commissioning · Archive photograph, Nigerian Breweries.</figcaption></figure><div><p className="eyebrow">A chapter in our school story</p><h2>Teaching recognised.<br/><em>Learning supported.</em></h2><p>MCIS teacher Felix Ariguzo received the 2017 Maltina Teacher of the Year award. The Nigerian Breweries Felix Ohiwerei Educational Trust subsequently donated a six-classroom block, library and conveniences to the school.</p><p>The commissioning is part of MCIS’s development story, alongside its continuing focus on science, reading and technology.</p><a className="text-link" href="https://www.nbplc.com/nigerian-breweries-fulfills-promise-to-maltina-teacher-of-the-year-donates-block-of-classrooms/">Read the original report <ArrowIcon size={17}/></a></div></div></section>
 
       <section className="page-final-cta">
         <div className="shell">

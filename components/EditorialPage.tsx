@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import StageNavigation from './StageNavigation';
 import ArrowIcon from './ArrowIcon';
 
@@ -13,7 +12,6 @@ export default function EditorialPage({
   eyebrow,
   title,
   intro,
-  image,
   sections,
   ctaLabel = 'Explore admissions',
   ctaHref = '/admissions',
@@ -21,13 +19,12 @@ export default function EditorialPage({
   eyebrow: string;
   title: string;
   intro: string;
-  image: string;
   sections: EditorialSection[];
   ctaLabel?: string;
   ctaHref?: string;
 }) {
   return (
-    <div className="section-page academic-detail-page">
+    <div className={"section-page academic-detail-page " + (eyebrow === "Early Years" ? "early-stage" : eyebrow === "Primary School" ? "primary-stage" : "secondary-stage")}>
 
       <section className="page-hero-v2">
         <div className="shell page-hero-grid">
@@ -37,10 +34,7 @@ export default function EditorialPage({
             <p>{intro}</p>
             <div className="page-hero-actions"><Link className="pill-button" href={ctaHref}>{ctaLabel}</Link><Link className="inline-cta" href="/academics">All academics <ArrowIcon size={18} /></Link></div>
           </div>
-          <div className="page-hero-media">
-            <Image src={image} alt="" fill priority sizes="(max-width: 900px) 100vw, 50vw" />
-            <div className="page-hero-caption"><span>MasterCare International School</span><span>{eyebrow}</span></div>
-          </div>
+          <aside className="stage-summary" aria-label="At this stage"><div className="stage-summary-top"><span>THE LEARNING JOURNEY</span><span aria-hidden="true">{eyebrow === 'Early Years' ? '01' : eyebrow === 'Primary School' ? '02' : '03'}</span></div><h2>{eyebrow}</h2><p>At this stage</p><ul>{sections.map(section => <li key={section.heading}>{section.heading}<span aria-hidden="true">↗</span></li>)}</ul><Link href="/contact#enquire">Ask about joining this stage <ArrowIcon size={18}/></Link></aside>
         </div>
       </section>
 
@@ -48,7 +42,7 @@ export default function EditorialPage({
 
       <section className="section-pad">
         <div className="shell editorial-split">
-          <div className="editorial-sticky"><p className="eyebrow">Inside {eyebrow}</p><h2>What this stage is designed to build.</h2><p>Each stage has its own pace and expectations, but the same focus on knowledge, confidence, character and readiness for what comes next.</p></div>
+          <div className="editorial-sticky"><p className="eyebrow">Inside {eyebrow}</p><h2>The foundations for what follows.</h2><p>A closer look at the learning, habits and experiences at this stage.</p></div>
           <div className="editorial-stack">
             {sections.map((section, index) => (
               <article className="editorial-row" key={section.heading}>

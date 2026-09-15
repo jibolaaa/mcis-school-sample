@@ -1,13 +1,12 @@
-import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 import Link from 'next/link';
-import Image from 'next/image';
 import StageCarousel from '@/components/StageCarousel';
 import ArrowIcon from '@/components/ArrowIcon';
 
 const stages = [
-  { title: 'Early Years', meta: 'Crèche · Pre-School', text: 'Curiosity, communication, movement and confident exploration form the first layer of learning.', href: '/academics/early-years', image: '/images/leadership.jpg' },
-  { title: 'Primary', meta: 'Elementary School', text: 'Strong foundations in literacy, numeracy, creativity and character create room for bigger questions.', href: '/academics/primary', image: '/images/campus.jpg' },
-  { title: 'Secondary', meta: 'Middle · High School', text: 'A more rigorous local and international pathway builds independence, leadership and examination readiness.', href: '/academics/secondary', image: '/images/leadership.jpg' },
+  { title: 'Early Years', meta: 'Crèche · Pre-School', text: 'Curiosity, communication, movement and confident exploration form the first layer of learning.', href: '/academics/early-years' },
+  { title: 'Primary', meta: 'Elementary School', text: 'Strong foundations in literacy, numeracy, creativity and character create room for bigger questions.', href: '/academics/primary' },
+  { title: 'Secondary', meta: 'Middle · High School', text: 'A more rigorous local and international pathway builds independence, leadership and examination readiness.', href: '/academics/secondary' },
 ];
 
 const pathways = [
@@ -18,7 +17,7 @@ const pathways = [
   ['05', 'UTME', 'University progression'],
 ];
 
-export const metadata: Metadata = { title: 'Academics', description: 'Explore Early Years, Primary and Secondary education at MasterCare International School, including Nigerian and Cambridge pathways.' };
+export const metadata = pageMetadata('academics');
 
 export default function AcademicsPage() {
   return (
@@ -32,11 +31,7 @@ export default function AcademicsPage() {
             <p>MCIS blends Nigerian and international learning pathways so students build depth, confidence and the qualifications needed for the next stage of their education.</p>
             <div className="page-hero-actions"><Link className="pill-button light" href="#stages">Explore learning stages</Link><Link className="text-link light-link" href="/admissions">Admissions <ArrowIcon size={17} /></Link></div>
           </div>
-          <div className="page-hero-media">
-            <Image src="/images/leadership.jpg" alt="A family at MasterCare International School" fill priority sizes="(max-width: 900px) 100vw, 50vw" />
-            <span className="page-hero-index">02</span>
-            <div className="page-hero-caption"><span>Learning at MCIS</span><span>Local depth · Global route</span></div>
-          </div>
+          <aside className="academic-index" aria-label="Explore academic stages"><p className="eyebrow light">The learning journey</p>{stages.map((stage,index) => <Link href={stage.href} key={stage.title}><span>0{index+1}</span><div><small>{stage.meta}</small><strong>{stage.title}</strong></div><ArrowIcon size={24}/></Link>)}<p>Three stages. One connected education.</p></aside>
         </div>
       </section>
 

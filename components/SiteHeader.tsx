@@ -16,7 +16,6 @@ const navItems = [
 
 export default function SiteHeader() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const lastScroll = useRef(0);
@@ -26,8 +25,7 @@ export default function SiteHeader() {
   useEffect(() => {
     const onScroll = () => {
       const current = window.scrollY;
-      setScrolled(current > 26);
-      if (!open && current > 160 && current > lastScroll.current + 6) setHidden(true);
+      if (!open && !document.querySelector('.site-header:focus-within') && current > 160 && current > lastScroll.current + 6) setHidden(true);
       else if (current < lastScroll.current - 6 || current < 100) setHidden(false);
       lastScroll.current = current;
     };
@@ -55,12 +53,11 @@ export default function SiteHeader() {
   }, [pathname]);
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + '/');
-  const solid = scrolled || pathname !== '/' || open;
 
   return <>
-    <header className={'site-header ' + (solid ? 'is-scrolled ' : '') + (hidden ? 'is-hidden' : '')}>
+    <header className={'site-header is-scrolled ' + (hidden ? 'is-hidden' : '')}>
       <Link className="brand" href="/" aria-label="MasterCare International School home">
-        <Image src="/images/logo.png" alt="" width={48} height={48} priority />
+        <Image src="/images/logo.jpg" alt="" width={48} height={48} priority />
         <span><strong>MasterCare</strong><small>International School</small></span>
       </Link>
       <nav className="desktop-nav" aria-label="Primary navigation">

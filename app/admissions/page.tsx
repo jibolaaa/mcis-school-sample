@@ -1,6 +1,5 @@
-import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 import Link from 'next/link';
-import Image from 'next/image';
 import ArrowIcon from '@/components/ArrowIcon';
 
 const steps = [
@@ -11,7 +10,7 @@ const steps = [
   ['05', 'Enrol', 'Receive next-step guidance and prepare for entry into the MCIS community.'],
 ];
 
-export const metadata: Metadata = { title: 'Admissions', description: 'Understand the MCIS admissions journey, choose a learning stage, arrange a campus visit and get guidance on applying.' };
+export const metadata = pageMetadata('admissions');
 
 export default function AdmissionsPage() {
   return (
@@ -25,11 +24,7 @@ export default function AdmissionsPage() {
             <p>Explore the right learning stage, visit the campus and speak with the admissions team about your child’s next step.</p>
             <div className="page-hero-actions"><Link className="pill-button" href="/contact#enquire">Enquire about admission <ArrowIcon size={17} /></Link><Link className="inline-cta" href="#process">See the process <ArrowIcon size={18} /></Link></div>
           </div>
-          <div className="page-hero-media">
-            <Image src="/images/leadership.jpg" alt="A family at MasterCare International School" fill priority sizes="(max-width: 900px) 100vw, 50vw" />
-            <span className="page-hero-index">04</span>
-            <div className="page-hero-caption"><span>Admissions at MCIS</span><span>Discover · Visit · Apply</span></div>
-          </div>
+          <aside className="admissions-chooser" aria-label="Choose a learning stage"><p className="eyebrow light">A place for your next chapter</p><h2>Where will<br/><em>you begin?</em></h2>{[['01','Early Years','/academics/early-years'],['02','Primary','/academics/primary'],['03','Secondary','/academics/secondary']].map(([n,title,href]) => <Link href={href} key={n}><span>{n}</span><strong>{title}</strong><ArrowIcon size={21}/></Link>)}<p className="chooser-note">Not sure? The admissions team can help you find the right entry point.</p></aside>
         </div>
       </section>
 

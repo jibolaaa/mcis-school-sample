@@ -1,5 +1,3 @@
 import Link from 'next/link';
-
-export default function NotFound() {
-  return <section className="not-found shell"><p className="eyebrow">Page not found</p><h1>Let’s find your way.</h1><p>This page may have moved. Explore MCIS or contact the school for help.</p><div className="page-hero-actions"><Link className="pill-button" href="/">Back to home</Link><Link className="text-link" href="/contact">Contact MCIS</Link></div></section>;
-}
+import ArrowIcon from '@/components/ArrowIcon';
+export default function NotFound(){return <section className="not-found shell"><div className="not-found-art" aria-hidden="true"><span>4</span><span className="lost-zero">✳</span><span>4</span><small>A small detour.</small></div><div className="not-found-copy"><p className="eyebrow">Page not found</p><h1>There’s a better<br/><em>way from here.</em></h1><p>This address doesn’t lead to a page at MCIS. Let’s get you back to something useful.</p><Link className="pill-button" href="/">Return to the homepage <ArrowIcon size={18}/></Link><nav className="recovery-links" aria-label="Suggested pages"><Link href="/academics">Find a learning stage <ArrowIcon size={17}/></Link><Link href="/admissions">Explore admissions <ArrowIcon size={17}/></Link><Link href="/contact">Contact the school <ArrowIcon size={17}/></Link></nav></div></section>;}

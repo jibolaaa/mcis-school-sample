@@ -1,11 +1,12 @@
-import type { Metadata } from 'next';
-import Image from 'next/image';
+import { pageMetadata } from '@/lib/seo';
+import Image from '@/components/SchoolImage';
 import Link from 'next/link';
 import ArrowIcon from '@/components/ArrowIcon';
+import ContactTools from '@/components/ContactTools';
 import EnquiryForm from '@/components/EnquiryForm';
 import { school } from '@/lib/school';
 
-export const metadata: Metadata = { title: 'Visit & Contact', description: 'Plan your visit to MasterCare International School in Asaba. Find directions, contact the school and prepare an admissions enquiry.' };
+export const metadata = pageMetadata('contact');
 
 export default function ContactPage() {
   return <div className="section-page contact-page">
@@ -22,11 +23,12 @@ export default function ContactPage() {
           </div>
         </div>
         <div className="page-hero-media">
-          <Image src="/images/campus.jpg" alt="School buildings and grounds at MasterCare International School, Asaba" fill priority sizes="(max-width: 900px) 100vw, 50vw" />
+          <Image src="/images/campus.jpg" alt="School buildings and grounds at MasterCare International School, Asaba" fill priority sizes="(max-width: 760px) 100vw, 50vw" />
           <div className="page-hero-caption"><span>Asaba, Delta State</span><a href={school.directionsUrl} target="_blank" rel="noopener noreferrer">Get directions ↗<span className="sr-only"> (opens Google Maps in a new tab)</span></a></div>
         </div>
       </div>
     </section>
+    <div className="shell contact-utility-strip"><p>Keep the school’s details close.</p><ContactTools /></div>
     <section className="section-pad" id="enquire">
       <div className="shell visit-planner">
         <div>

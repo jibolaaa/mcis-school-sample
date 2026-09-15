@@ -7,7 +7,7 @@ const labels: Record<string, string> = { discover: 'Discover MCIS', academics: '
 
 export default function Breadcrumbs() {
   const pathname = usePathname();
-  if (pathname === '/') return null;
+  if (pathname === '/' || !pathname.split('/').filter(Boolean).every(part => labels[part])) return null;
   const parts = pathname.split('/').filter(Boolean);
   return <nav className={'breadcrumbs shell' + (pathname === '/academics' ? ' breadcrumbs-light' : '')} aria-label="Breadcrumb"><ol><li><Link href="/">Home</Link></li>{parts.map((part, index) => <li key={part}>{index === parts.length - 1 ? <span aria-current="page">{labels[part] || 'Page'}</span> : <Link href={'/' + parts.slice(0, index + 1).join('/')}>{labels[part] || part}</Link>}</li>)}</ol></nav>;
 }

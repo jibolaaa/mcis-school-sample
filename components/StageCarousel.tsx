@@ -1,11 +1,10 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useId, useRef, useState } from 'react';
 import ArrowIcon from './ArrowIcon';
 
-type Stage = { number: string; title: string; text: string; meta: string; href: string; image: string };
+type Stage = { number: string; title: string; text: string; meta: string; href: string };
 
 export default function StageCarousel({ stages }: { stages: Stage[] }) {
   const railRef = useRef<HTMLDivElement>(null);
@@ -32,14 +31,13 @@ export default function StageCarousel({ stages }: { stages: Stage[] }) {
     const rail = railRef.current;
     const card = rail?.children[index] as HTMLElement | undefined;
     if (!rail || !card) return;
-    rail.scrollTo({ left: rail.scrollLeft + card.getBoundingClientRect().left - rail.getBoundingClientRect().left, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+    rail.scrollTo({ left: rail.scrollLeft + card.getBoundingClientRect().left - rail.getBoundingClientRect().left, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   };
 
   return <div className="stage-carousel-shell" role="region" aria-label="Academic stages">
     <div id={id} ref={railRef} className="stage-grid">
       {stages.map(stage => <Link key={stage.title} href={stage.href} className="stage-card-link" aria-label={'Explore ' + stage.title}>
-        <article className="stage-card">
-          <div className="stage-card-bg"><Image src={stage.image} alt="" fill sizes="(max-width: 900px) 82vw, 33vw" /></div>
+        <article className={"stage-card stage-tone-" + stage.number}>
           <div className="stage-top"><span>{stage.number}</span><span className="stage-arrow"><ArrowIcon size={18} /></span></div>
           <div className="stage-body"><p>{stage.meta}</p><h3>{stage.title}</h3><p className="stage-description">{stage.text}</p><span className="stage-explore">Explore this stage <ArrowIcon size={16} /></span></div>
         </article>
