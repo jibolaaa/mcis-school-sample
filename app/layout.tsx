@@ -7,7 +7,7 @@ import {isIndexable, siteUrl} from '@/lib/seo';
 import './site.css';
 
 const sans=localFont({src:[{path:'../public/fonts/school-font-1.woff2',weight:'400'},{path:'../public/fonts/school-font-3.woff2',weight:'600'}],variable:'--font-sans',display:'swap'});
-const serif=localFont({src:'../public/fonts/school-font-4.woff2',weight:'400',variable:'--font-serif',display:'swap'});
+const heading=localFont({src:[{path:'../public/fonts/source-sans-700.woff2',weight:'700'},{path:'../public/fonts/source-sans-800.woff2',weight:'800'}],variable:'--font-heading',display:'swap'});
 export const viewport:Viewport={themeColor:'#f5f2e9',colorScheme:'light',width:'device-width',initialScale:1};
 export const metadata: Metadata = {
  metadataBase:new URL(siteUrl),
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${sans.variable} ${serif.variable}`}>
+    <html lang="en" className={`${sans.variable} ${heading.variable}`}>
       <body id="top">
         <a className="skip-link" href="#main-content">Skip to main content</a>
         <SiteHeader />

@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mcis-school-sample-ntf6.vercel.app';
 export const isIndexable = process.env.NEXT_PUBLIC_SITE_INDEXABLE === 'true';
 export const pages = {
+ news:{path:'/news',title:'News & School Notices',socialTitle:'News from MasterCare.',description:'Read MCIS admission notices, school achievements and dated stories from the MasterCare International School archive.'},
+ calendar:{path:'/calendar',title:'School Calendar & Session',socialTitle:'Plan the school year.',description:'Explore the MCIS 2026/2027 session, request confirmed term dates and enquire about a campus visit.'},
  home:{path:'/',title:'MasterCare International School, Asaba',socialTitle:'Raising global heroes.',description:'Discover MasterCare International School in Asaba: Early Years, Primary and Secondary education, Christian values, day and boarding life.'},
  discover:{path:'/discover',title:'Discover MCIS',socialTitle:'Education with purpose.',description:'Meet MasterCare International School in Asaba. Explore its approach to learning, HEROES values, Christian ethos and school community.'},
  academics:{path:'/academics',title:'Academics & Learning Stages',socialTitle:'A world of possibility.',description:'Explore Early Years, Primary and Secondary at MasterCare International School, with Nigerian and Cambridge academic pathways.'},

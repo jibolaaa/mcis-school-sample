@@ -21,7 +21,7 @@ export default function AdmissionsPage() {
           <div className="page-hero-copy">
             <p className="eyebrow">Admissions</p>
             <h1>A clear path into <em>MCIS.</em></h1>
-            <p>Explore the right learning stage, visit the campus and speak with the admissions team about your child’s next step.</p>
+            <p>Applications for the 2026/2027 academic session are open. Explore the right learning stage, visit the campus and speak with admissions about your child’s next step.</p>
             <div className="page-hero-actions"><Link className="pill-button" href="/contact#enquire">Enquire about admission <ArrowIcon size={17} /></Link><Link className="inline-cta" href="#process">See the process <ArrowIcon size={18} /></Link></div>
           </div>
           <aside className="admissions-chooser" aria-label="Choose a learning stage"><p className="eyebrow light">A place for your next chapter</p><h2>Where will<br/><em>you begin?</em></h2>{[['01','Early Years','/academics/early-years'],['02','Primary','/academics/primary'],['03','Secondary','/academics/secondary']].map(([n,title,href]) => <Link href={href} key={n}><span>{n}</span><strong>{title}</strong><ArrowIcon size={21}/></Link>)}<p className="chooser-note">Not sure? The admissions team can help you find the right entry point.</p></aside>

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const labels: Record<string, string> = { discover: 'Discover MCIS', academics: 'Academics', 'early-years': 'Early Years', primary: 'Primary', secondary: 'Secondary', 'student-life': 'Student Life', admissions: 'Admissions', contact: 'Visit & Contact' };
+const labels: Record<string, string> = { news: 'News & Notices', calendar: 'School Calendar', discover: 'Discover MCIS', academics: 'Academics', 'early-years': 'Early Years', primary: 'Primary', secondary: 'Secondary', 'student-life': 'Student Life', admissions: 'Admissions', contact: 'Visit & Contact' };
 
 export default function Breadcrumbs() {
   const pathname = usePathname();

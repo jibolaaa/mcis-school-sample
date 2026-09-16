@@ -9,7 +9,7 @@ export default function Reveal({ children, className = '' }: { children: ReactNo
     if (!node || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
-        node.animate([{ transform: 'translateY(18px)' }, { transform: 'translateY(0)' }], { duration: 550, easing: 'cubic-bezier(.2,.75,.2,1)' });
+        node.animate([{ opacity: 0, transform: 'translateY(32px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 750, easing: 'cubic-bezier(.2,.75,.2,1)' });
         observer.disconnect();
       }
     }, { threshold: 0.08 });

@@ -43,3 +43,12 @@ Original CSS: https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&
 - No suitable verified nursery or primary classroom photos could be retrieved; those sections use distinct typographic layouts rather than unrelated school photos.
 - Local WOFF2 fonts (400/600 sans, 400 serif) reduce delivered font bytes. All page photos use static imports for intrinsic metadata/blur placeholders and Next Image sizing.
 - Preview deployment is intentionally noindex. Set NEXT_PUBLIC_SITE_URL and NEXT_PUBLIC_SITE_INDEXABLE=true only for a confirmed official domain.
+
+
+## Agreed design direction — 16 September 2026
+
+User requested current colours and section arrangement retained; bold upright headings, visible animation, a homepage header integrated with the opening image, school news, calendar and academic session information. Bowen’s Source Sans heading family informed the typography. No Bowen photos or institutional claims copied.
+
+Official https://mcis.sch.ng/admin.html and https://mcis.sch.ng/ confirm 2026/2027 admissions are ongoing (checked 16 September 2026). The new notice is labelled by verification date, not an invented publication date. No MCIS term dates could be verified; the calendar shows month dates for visit enquiries and clearly marks the term schedule as awaiting confirmation. It does not claim to show school events or confirmed bookings. Archived sport and classroom stories retain their labels and sources.
+
+Source Sans 3 bold/extra-bold from Google Fonts, locally hosted with Latin subsets and SIL Open Font License retained. https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@600;700;800&display=swap . Motion honours prefers-reduced-motion.

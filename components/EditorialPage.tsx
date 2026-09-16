@@ -34,7 +34,7 @@ export default function EditorialPage({
             <p>{intro}</p>
             <div className="page-hero-actions"><Link className="pill-button" href={ctaHref}>{ctaLabel}</Link><Link className="inline-cta" href="/academics">All academics <ArrowIcon size={18} /></Link></div>
           </div>
-          <aside className="stage-summary" aria-label="At this stage"><div className="stage-summary-top"><span>THE LEARNING JOURNEY</span><span aria-hidden="true">{eyebrow === 'Early Years' ? '01' : eyebrow === 'Primary School' ? '02' : '03'}</span></div><h2>{eyebrow}</h2><p>At this stage</p><ul>{sections.map(section => <li key={section.heading}>{section.heading}<span aria-hidden="true">↗</span></li>)}</ul><Link href="/contact#enquire">Ask about joining this stage <ArrowIcon size={18}/></Link></aside>
+          <aside className="stage-summary" aria-label="At this stage"><div className="stage-summary-top"><span>THE LEARNING JOURNEY</span><span aria-hidden="true">{eyebrow === 'Early Years' ? '01' : eyebrow === 'Primary School' ? '02' : '03'}</span></div><h2>{eyebrow}</h2><p>At this stage</p><ul>{sections.map(section => <li key={section.heading}><a href={"#topic-" + sections.indexOf(section)}>{section.heading}<span aria-hidden="true">↓</span></a></li>)}</ul><Link href="/contact#enquire">Ask about joining this stage <ArrowIcon size={18}/></Link></aside>
         </div>
       </section>
 
@@ -45,7 +45,7 @@ export default function EditorialPage({
           <div className="editorial-sticky"><p className="eyebrow">Inside {eyebrow}</p><h2>The foundations for what follows.</h2><p>A closer look at the learning, habits and experiences at this stage.</p></div>
           <div className="editorial-stack">
             {sections.map((section, index) => (
-              <article className="editorial-row" key={section.heading}>
+              <article id={"topic-" + index} className="editorial-row" key={section.heading}>
                 <span>0{index + 1}</span>
                 <div>
                   <h3>{section.heading}</h3>

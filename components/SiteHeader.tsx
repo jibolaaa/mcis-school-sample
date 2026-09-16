@@ -11,12 +11,14 @@ const navItems = [
   ['Academics', '/academics'],
   ['Student Life', '/student-life'],
   ['Admissions', '/admissions'],
+  ['News', '/news'],
   ['Visit & Contact', '/contact'],
 ];
 
 export default function SiteHeader() {
   const pathname = usePathname();
   const [hidden, setHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const lastScroll = useRef(0);
   const menu = useRef<HTMLDialogElement>(null);
@@ -25,6 +27,7 @@ export default function SiteHeader() {
   useEffect(() => {
     const onScroll = () => {
       const current = window.scrollY;
+      setScrolled(current > 48);
       if (!open && !document.querySelector('.site-header:focus-within') && current > 160 && current > lastScroll.current + 6) setHidden(true);
       else if (current < lastScroll.current - 6 || current < 100) setHidden(false);
       lastScroll.current = current;
@@ -55,7 +58,7 @@ export default function SiteHeader() {
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + '/');
 
   return <>
-    <header className={'site-header is-scrolled ' + (hidden ? 'is-hidden' : '')}>
+    <header className={'site-header ' + (pathname === '/' && !scrolled ? 'header-overlay ' : 'is-scrolled ') + (hidden ? 'is-hidden' : '')}>
       <Link className="brand" href="/" aria-label="MasterCare International School home">
         <Image src="/images/logo.jpg" alt="" width={48} height={48} priority />
         <span><strong>MasterCare</strong><small>International School</small></span>
@@ -76,7 +79,7 @@ export default function SiteHeader() {
           {navItems.map(([label, href], index) => <Link key={href} href={href} className={isActive(href) ? 'is-active' : ''} aria-current={isActive(href) ? 'page' : undefined} onClick={() => menu.current?.close()}><span>0{index + 1}</span><b>{label}</b><ArrowIcon size={20} /></Link>)}
         </nav>
         <Link href="/admissions" className="pill-button light mobile-admission" onClick={() => menu.current?.close()}>Begin admission <ArrowIcon size={17} /></Link>
-        <div className="mobile-contact"><a href="https://mcissch.com/portal/login.html" target="_blank" rel="noopener noreferrer">School portal <span className="sr-only">(opens in a new tab)</span><ArrowIcon size={16} /></a><p>1 Dan Okenyi Street, off Okpanam Road, Asaba.</p><a href="mailto:info@mcis.sch.ng">info@mcis.sch.ng</a></div>
+        <div className="mobile-contact"><Link href="/calendar" onClick={() => menu.current?.close()}>School calendar <ArrowIcon size={16}/></Link><a href="https://mcissch.com/portal/login.html" target="_blank" rel="noopener noreferrer">School portal <span className="sr-only">(opens in a new tab)</span><ArrowIcon size={16} /></a><p>1 Dan Okenyi Street, off Okpanam Road, Asaba.</p><a href="mailto:info@mcis.sch.ng">info@mcis.sch.ng</a></div>
       </div>
     </dialog>
   </>;
